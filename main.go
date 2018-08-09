@@ -32,7 +32,7 @@ func main() {
 		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
 		// It detects the suitable TemplateEngine for each path automatically.
 		gintemplate.HTML(ctx, http.StatusOK, "index", gin.H{
-			"title": "Fontend title!",
+			"title": "Block Games!",
 		})
 	})
 	//soccer
@@ -40,7 +40,7 @@ func main() {
 		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
 		// It detects the suitable TemplateEngine for each path automatically.
 		gintemplate.HTML(ctx, http.StatusOK, "soccer", gin.H{
-			"title": "Soccer Game!",
+			"title": "Block Games! Soccer",
 		})
 	})
 
@@ -49,7 +49,7 @@ func main() {
 		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
 		// It detects the suitable TemplateEngine for each path automatically.
 		gintemplate.HTML(ctx, http.StatusOK, "baseball", gin.H{
-			"title": "Baseball Game!",
+			"title": "Block Games! Baseball",
 		})
 	})
 
