@@ -28,7 +28,7 @@ func main() {
 
 	//new template engine
 	router.HTMLRender = gintemplate.New(gintemplate.TemplateConfig{
-		Root:      "views/frontend",
+		Root:      "views/Client",
 		Extension: ".html",
 		Master:    "layouts/master",
 		Partials:  []string{"partials/ad"},
