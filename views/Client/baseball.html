@@ -1,0 +1,105 @@
+{{define "content"}}
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center">
+            <div class="banner-content col-lg-7 col-md-6 justify-content-center ">
+                <h6 class="text-uppercase">Don’t look further, This is our Leader</h6>
+                <h1>All things need to repair</h1>
+                <p class="text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.  sed do eiusmod tempor incididunt..
+                </p>
+                <a href="#" class="primary-btn header-btn text-uppercase mt-10">Get Started</a>
+            </div>	
+            <div class="banner-img col-lg-5 col-md-6 align-self-end">
+                <img class="img-fluid" src="/public/img/banner-img.png" alt="">
+            </div>											
+        </div>
+    </div>
+</section>
+
+<section class="service-area section-gap" id="service">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-50 header-text text-center">
+                <h1 class="mb-10">Baseball</h1>
+                
+            </div>
+        </div>						
+        <div class="row" id="soccerList"></div>
+    </div>	
+</section>
+<script>
+//baseballList();
+function baseballList() {
+	$.getJSON( "/soccerList", function( data ) {
+ 		console.log(data);
+		$.each(data ,function(k,v){
+			var html ='';
+			html +='\
+				<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> \
+	                <div class="single-service text-center"> \
+	                    <div class="thumb"> \
+	                        <img src="https://assets.bsportsfan.com/images/team/b/@@HomeImg@@.png" alt="" style="width:105px;"> \
+	                    </div> \
+	                    <h4>@@HomeTeam@@</h4> \
+	                    <p>Manager : @@HomeManager@@</p> \
+	                </div> \
+	            </div> \
+				<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> \
+	                <div class="single-service text-center"> \
+						<p>Premier LeagueRound @@k@@</p> \
+	                    <div class="thumb"> \
+	                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAuCAYAAAHRtUAsAAAAAXNSR0IArs4c6QAACk5JREFUWAnNWAtwVcUZ3j33JiEESCEgQUCgFFEeAeT9qrQWrFRR1MSpVcAHBC1iFR9UHHodpdMIhQ6EtxIf4GBQK0YkseMoSmPCK4QQGsEQAnkQQpKb5L7Ovefs9vvPzTm5Nze8HGbazdyzu/97///ff3fD2KXaUfcZecRdusnEcxq8X/uNZIzjjzEh2ccm0uhfPvs+kIwpJnRG4esDjnvOmlPG+hWkltxYMH9SK6TtqMBVto1gR11lhixDKwG2X9zXClgKTVCvcybP2AlbePxAB+XniT7GZB7N2U0FC5KNwaU+lWpddgQux1mQm+M8aij6sqXfXbu/MxFmNxQUW9asqvh0BVeUhVKydK7IqUt63fvrtIrPJrzcZ1aeRURcj5Wmy4yBiwzYvNJ16+G6pzWXt1MrUWaybfSt/f8GwAvk14PD32zFxRxIWUxSrrmpUh1uMlnhMAGZmZm2Op+70ZwbPYXbBJjON+eGi2sCTranNv9mG7M1X9AsZp5dfyTVIDjvb0hTGD/GOI/hmnh0ey0ihrXU6s1GvhjSVld/JuE0yiG2pNcsY6mrqj6ZYq3ZCC2T9VywU0zh4wnhE54bDRUkosbv1BD7N94d9MwampOHEfYqSwIBqf2uZEVwRcDsGbyMWwS3HXtxHpyylXNOUg/D5WOIwVJxUXOOFz7Rs2LS2w2AW35hiEc6UV6X1uB3zWtPkBUvitMPnnO9HQ6HBWth4Ke81ZJ+tVrTiPaEWIvd31yicclsRDS5yy0W/N9N/8G6sIGk2DQlfshTlxVCyE/q8gQ6jvBlPNB94uOY58CDM+CfVKmLKm6zZbUVIpkstzS2IPmmmhydBAVUX++o6A6VEPAV58odhJdMpJ33VDt6xfZayLhiBJidK4tuK4QtOLQ5qk9iV3+LUCZ1NkOx8S9hXdXyvim9TXhoHyGEkIvK3mqJr/g0fcCC2SbDtK8d9oE39OkSGyuqKKPxY+nvVNisJDEJqS+vq4iL7dLJLbj+kQm/v+TNyXabbX8za2TNtGCjya+ZwyHatcQkmVq0bKGiKBtbExZ+keysr9k5PH/CuiaTLkLIrQWLX9K5KLdx/kf4dyrYvkPoJ2D8yImRazNNxsg+Mzk64fDchm4H5qZEIq8zxC/9o3+ySKffvfAnM6PkP1SlNhxuT4C1wYqLi6OLvVU3tSU66anO8gj/TpfutWhDaQwg7dRA/zg1INTyo00/WslEhB7hu9stfMyj+yL2CeENAXc8/9BMt+5jbqEyF9PmEoLad86SZILR7+TeQ68FoeFfQ0BtU9P3LmghIdB4p0niZd6NpN2leRanpKQY+WiebHsajvTDqfe9lVAf1eb+Hhn4ATHfnzCB4Pyf9cb2Z7O7TeCf1OcV4qxKMoVTT1XdEkAAo/yj1zR9mGLn0xVsZxSb1zhTlgMcvENgYJwGBiCkAmPOmjTvIkXh6SBdynR5L2oEaRltsEp5kYvAaMHtkGvbD829UTuywywgIcZ5I5gKphjJZSPUxhNRU8mRKMevHBrRUFtZufvFF3vfuzIits2a96Bb+mKM0Gnqao+OyMC5bODgkUHW4JeYaRRhwcvl72WgeMwjpFR9faU9ZiBWkoXa2dkkxrI01L51af3nPG/CiN5oi0rfepgpcgdN0gfMt/DJuDmwPhOjeyR2Toaf3iU8BH0QsQSX8AbM5CEis+1K2aXHxfIYr1Tfdete5IzxGxsh4J1Bz+yCkHTyQWhLPrnqc08n0WAKp77e2zzVMjGU2BiTydA6s2TFhyAKFhuTWkgXQjjpi1uXF5mgCH4CTDvxqhN+jm9FGqfY4/uGvpFhwiKq9JjCl2bpTHRUFJbq1v1B5hY1UugzDyX9fa/JTH1bAdzFvONRTJuY4NOA/wGu7gD+0jrunFUz4n03MYW2MAH9CuZP9Ar/Xbi3FOHimsQVvSuC9eO527ZVhTKFjg3juh2csw3Jc4PPpy7wTNl5SeJQRmsck5+SZs9/EOfA/1ErKyvr4NbVV10uV8//iVnVat3QWn9j/gV/w6irNSBiR1wtYyjdaVdNzzLfhX+cUS/4VKkf90i13CXUvqC5bL6bMsIyioDH3WfHgnMjhom4acWhXzssrt9fCNdeK/acG+dl6n4ueBTdeUgrrnTjAwH/MgwJdMUWZmleTVFP3jEGzyKeEMqJKpQ2vsvNS0NhNM5tLO5mt0UfA71xQQMdrOBeqWm/HP+zWw61pb/UPMwT7lg+ThFqAuqpQU9CaSyEfDDnfOHrdyaOCNucqhTrVV2FAS0LlvyMkP5pd3S9rfxSCkPhnzuPdY2TfESYJ4hgd31eksJt72B1o/CDeDoRyRCRfE/CWOtimFV34DGcZdjXYDJskEedUr/9kYQJTXQkcyUmBXwpWMNgQ7GUlZKzUlSfRLyI6KnS1ZArxb4II4hhc+m/4uPjOx6ECYPgCiiBKVKeVHzVI1P6pnh3XNg3yK7YCkAaF/SUOF0ntREJzP4EFKyE8CiSE7TOshJzc9yiNjitDwuHwYdP6sDpjW/XZCcrPOorLNIMz80iOmEu0Jt8TN/KhY6kJRdwJ5MiLZazSg8TXSgrW5uk69JpJvlY0I7BgqJbcQZ3QGjyvhaTQlGt47SS3Z1j46MOmi6FN0rAsBPCHAZV8BKyCd0DoOlBMND44fKni6or39syJjVg0AU/fG1l1t14/q+C6YPwOy108ehzfe5pvUGFEIcNV1RkjsQDOheKY83QGD2okLD7cAvcAaVbiIkiJ6R8+5XeDzwZJuQKk8t6wuR9pXz7JtycUin+5o4hnBRiut/ry4+Oi/0WeTDSTGL0LmC/RRgK8XxpgJEVoHUyoVdqfq3szVueaDZlU99uToQS0NgrA2cp/LRSioDRM1lU4Tr77a6hDnrcjVpcmjFI4XIEs/FeODq7wmA77oHdcZQOwWE+GUzdJeozj1XYc2cySFAR86t3rRn8VOVVeWJB6frn8NRcTVvKXC2Ep20duDCigLVdAM1TT29YKZmyBMaTAFgSpBISb2LZNOSqPHHG5dnSo6O9B9z7Ai6HUeQNweT5oKj2vw+fXHM/vPEaFA5z6cGXcKgniQsL2r7jF0tx7b2Gdk/J6wNszP4sMrxWk97NWYMdF032+374630oa3Ng6AwoozPncu0A7lxzswa/UkJE12REW6m/KXZMQbzxH0bevy0udA7HNWLde5jOcrQA++ybUQ7cFlvbNRsx+tCCqKiYbpNRsvcgwB2tbG2VGToqRLn/c15SWthtMpSAxlc0IqnwT09C4VaspBDbcztYJqI0TwJjIiUZnjKUq/XIueDJK7FqybYHmNx4YuSaE9BBqXjZdsXEbNa9OEMUul/04QpfApGdkJXlSM0P8V7FVmTjEI4qvOqyeIB/XDpuw7nLamwHGe6Jr6fZu3cekBTFcMeWvBarHItlnMJ/er+44PdUdRed7RenbAsrNO3IvGaQYURc7h+GK1HyWbh0FArNBk3yHG/2jirmCD+Orln6VTJwljv7t0zzHcbDv4nN3KteJd91JfsvcyWTJOmPKqMAAAAASUVORK5CYII=" alt="" style="width:60px;"> \
+	                    </div> \
+						<br> \
+	                    <p>@@SoccerDate@@</p> \
+	                    <a class="btn btn-outline-primary btn-cho cho@@k@@" id="H@@k@@" onclick="toggleBtn(@@k@@,0)">Home @@Home@@</a> \
+						<a class="btn btn-outline-success btn-cho cho@@k@@" id="D@@k@@" onclick="toggleBtn(@@k@@,1)">Drow @@Drow@@</a> \
+						<a class="btn btn-outline-danger btn-cho cho@@k@@" id="A@@k@@" onclick="toggleBtn(@@k@@,2)">Away @@Away@@</a> \
+	                </div> \
+	            </div> \
+				<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"> \
+	               	<div class="single-service text-center"> \
+	                    <div class="thumb"> \
+	                        <img src="https://assets.bsportsfan.com/images/team/b/@@AwayImg@@.png" alt="" style="width:105px;"> \
+	                    </div> \
+	                    <h4>@@AwayTeam@@</h4> \
+	                    <p>Manager : @@AwayManager@@</p> \
+	                </div> \
+	            </div> \
+				<div class="col-lg-12 col-md-12 col-xs-12"><br><br><br></div>\
+			';
+			
+			
+			html = html.replace(/@@k@@/gi, k+1);
+			html = html.replace(/@@HomeTeam@@/gi, v['homeTeam']); 
+			html = html.replace(/@@AwayTeam@@/gi, v['awayTeam']); 
+			html = html.replace(/@@HomeManager@@/gi, v['homeManager']); 
+			html = html.replace(/@@AwayManager@@/gi, v['awayManager']);
+			html = html.replace(/@@HomeImg@@/gi, v['homeImg']); 
+			html = html.replace(/@@AwayImg@@/gi, v['awayImg']);
+			html = html.replace(/@@SoccerDate@@/gi, v['soccerDate']);
+			html = html.replace(/@@Home@@/gi, v['home']); 
+			html = html.replace(/@@Drow@@/gi, v['drow']); 
+			html = html.replace(/@@Away@@/gi, v['away']); 
+			$('#soccerList').append(html);
+		});
+	});
+}
+function toggleBtn(id,target) {
+	$('.cho'+id).removeClass('active');
+	switch(target){
+		case 0:
+			$($('#H'+id)).toggleClass( 'active');
+			break;
+		case 1:
+			$($('#D'+id)).toggleClass( 'active' );
+			break;
+		case 2:
+			$($('#A'+id)).toggleClass( 'active' );
+			break;
+	}
+	
+}
+</script>
+{{end}}

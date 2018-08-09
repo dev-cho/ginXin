@@ -27,12 +27,29 @@ func main() {
 	})
 	thema := "repair"
 	router.Static("/public", "./_thema/"+thema) //CSS
-
+	//Index
 	router.GET("/", func(ctx *gin.Context) {
 		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
 		// It detects the suitable TemplateEngine for each path automatically.
 		gintemplate.HTML(ctx, http.StatusOK, "index", gin.H{
 			"title": "Fontend title!",
+		})
+	})
+	//soccer
+	router.GET("/Soccer", func(ctx *gin.Context) {
+		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
+		// It detects the suitable TemplateEngine for each path automatically.
+		gintemplate.HTML(ctx, http.StatusOK, "soccer", gin.H{
+			"title": "Soccer Game!",
+		})
+	})
+
+	//Baseball
+	router.GET("/Baseball", func(ctx *gin.Context) {
+		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
+		// It detects the suitable TemplateEngine for each path automatically.
+		gintemplate.HTML(ctx, http.StatusOK, "baseball", gin.H{
+			"title": "Baseball Game!",
 		})
 	})
 
