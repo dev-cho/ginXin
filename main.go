@@ -25,7 +25,8 @@ func main() {
 		},
 		DisableCache: true,
 	})
-	router.Static("/public", "./public") //CSS
+	thema := "repair"
+	router.Static("/public", "./_thema/"+thema) //CSS
 
 	router.GET("/", func(ctx *gin.Context) {
 		// `HTML()` is a helper func to deal with multiple TemplateEngine's.
